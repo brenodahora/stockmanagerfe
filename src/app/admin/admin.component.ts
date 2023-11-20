@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Product, ProductApiResponse } from '../models/product.model';
+import { Product } from '../models/product.model';
 
 @Component({
   selector: 'app-admin',
@@ -13,13 +13,6 @@ export class AdminComponent implements OnInit {
   readonly token: string | null = localStorage.getItem('token');
   private api = environment.api;
   products: Product[] = [];
-  productapiresponse: ProductApiResponse = {
-    products: [],
-    totalDocs: 0,
-    limit: 0,
-    total: 0,
-    page: 0
-  };
 
   constructor(private httpClient: HttpClient) {}
 
@@ -37,15 +30,14 @@ export class AdminComponent implements OnInit {
       'Content-Type': 'application/json',
     });
 
-    this.httpClient.get<ProductApiResponse>(this.api + '/product', { headers }).subscribe({
-        next: (response) => {
-          this.productapiresponse = response;
-          this.products = response.products;
-          console.log(this.products);
-        },
-        error: (error) => {
-          alert(error.error);
-        }
-      });
+    this.httpClient.get<Product[]>(this.api + '/product', { headers }).subscribe({
+      next: (response) => {
+        this.products = response;
+        console.log(JSON.stringify(response));
+      },
+      error: (error) => {
+        alert(error.error);
+      }
+    });
   }
 }

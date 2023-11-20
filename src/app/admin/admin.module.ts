@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
-import { BrowserModule } from '@angular/platform-browser';
 
 
 @NgModule({
@@ -12,8 +11,7 @@ import { BrowserModule } from '@angular/platform-browser';
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule,
-    BrowserModule
+    AdminRoutingModule
   ],
   exports: [
     AdminComponent
