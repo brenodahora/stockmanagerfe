@@ -13,7 +13,8 @@ import { RouterModule } from '@angular/router';
     LandingComponent
   ],
   imports: [
-    CommonModule, RouterModule
+    CommonModule, 
+    RouterModule
   ]
 })
 export class LandingModule { }

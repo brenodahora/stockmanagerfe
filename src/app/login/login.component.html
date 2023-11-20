@@ -6,10 +6,10 @@
             <img src="../../assets/logo.png" >
             <form (ngSubmit)="login()">
                 <label for="email">email</label>
-                <input type="text" id="email" [(ngModel)]="email" name="email" required>
+                <input type="text" id="email" [(ngModel)]="email" name="email" placeholder="email" required>
         
                 <label for="senha">Senha</label>
-                <input type="password" id="senha" [(ngModel)]="senha" name="senha" required>
+                <input type="password" id="senha" [(ngModel)]="senha" name="senha" placeholder="senha" required>
 
                 <a class="redefine-password">Redefinir senha</a>
                 
