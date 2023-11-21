@@ -1,11 +1,21 @@
 export interface Product {
-    title: string;
-    description: string;
-    department: string;
-    brand: string;
-    price: number;
-    qtd_stock: number;
-    bar_codes: string;
-    created_at: Date;
-    updated_at: Date;
+  _id: string;
+  title: string;
+  description: string;
+  department: string;
+  brand: string;
+  price: number;
+  qtd_stock: number;
+  bar_codes: string;
+  created_at: string;
+  updated_at: string;
+  __v: number;
+}
+
+export interface ProductApiResponse {
+  products: Product[];
+  totalDocs: number;
+  limit: number;
+  total: number;
+  page: number;
 }
