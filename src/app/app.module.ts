@@ -7,8 +7,10 @@ import { LoginComponent } from './login/login.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { NavbarComponent } from './navbar/navbar.component';
-import { ProductListComponent } from './product-list/product-list.component';
+import { NavbarComponent } from './admin/navbar/navbar.component';
+import { ProductListComponent } from './admin/product-list/product-list.component';
+import { HomePageComponent } from './public/landing/home-page/home-page.component';
+import { CreateProductComponent } from './admin/create-product/create-product.component';
 
 
 @NgModule({
@@ -16,7 +18,9 @@ import { ProductListComponent } from './product-list/product-list.component';
     AppComponent,
     LoginComponent,
     NavbarComponent,
-    ProductListComponent
+    ProductListComponent,
+    HomePageComponent,
+    CreateProductComponent
   ],
   imports: [
     CommonModule,
@@ -29,3 +33,4 @@ import { ProductListComponent } from './product-list/product-list.component';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

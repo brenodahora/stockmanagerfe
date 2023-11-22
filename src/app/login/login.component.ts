@@ -17,15 +17,15 @@ export class LoginComponent {
 
   login(){
     const credentials = { email: this.email, senha: this.senha};
-    
+
     this.authService.login(credentials).subscribe({
       next: (response) => {
         this.auth = response;
-        
+
         localStorage.setItem('_id', this.auth.user._id);
         localStorage.setItem('token', this.auth.token);
 
-        this.router.navigateByUrl('/admin');
+        this.router.navigateByUrl('/home');
       },
       error: (error) => {
         alert(error.error);

@@ -21,7 +21,14 @@ body {
   border-radius: 10px;
 }
 button{
-  position: fixed;
+  position: absolute;
   right: 20px;
   bottom: 48px;
+}
+#fechar{
+  margin-right: 15%;
+}
+input{
+  display: flex;
+  align-content: center;
 }

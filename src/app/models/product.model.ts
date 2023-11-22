@@ -1,5 +1,5 @@
 export interface Product {
-  _id: string;
+  _id?: string;
   title: string;
   description: string;
   department: string;
@@ -7,9 +7,9 @@ export interface Product {
   price: number;
   qtd_stock: number;
   bar_codes: string;
-  created_at: string;
-  updated_at: string;
-  __v: number;
+  created_at?: string;
+  updated_at?: string;
+  __v?: number;
 }
 
 export interface ProductApiResponse {
