@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 declare var window:any;
 
 
+
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
@@ -21,9 +22,9 @@ export class ProductListComponent implements OnInit {
   qtd_stock:number = 0;
   bar_codes:string = '';
 
+  formModalProductCreate:any;
+  formModalDeleteProduct:any;
 
-
-  formModal:any;
   readonly _id: string | null = localStorage.getItem('_id');
   readonly token: string | null = localStorage.getItem('token');
   private api = environment.api;
@@ -40,8 +41,11 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit(): void {
     this.initialize();
-    this.formModal = new window.bootstrap.Modal(
+    this.formModalProductCreate = new window.bootstrap.Modal(
       document.getElementById("modalCreateProduct")
+    )
+    this.formModalDeleteProduct = new window.bootstrap.Modal(
+      document.getElementById("modalDeleteProduct")
     )
   }
 
@@ -65,18 +69,19 @@ export class ProductListComponent implements OnInit {
         }
     });
   }
-  openModal(){
-    this.formModal.show();
+  openModalCreateProduct(){
+    this.formModalProductCreate.show();
   }
-  doSomething(){
-    this.formModal.hide();
-    this.router.navigate([this.router.url]);
+  openmodalDeleteProduct(){
+    this.formModalDeleteProduct.show();
   }
+
   realizarRefresh() {
     this.router.navigate([this.router.url]);
     this.router.navigateByUrl(this.router.url);
     this.listAllProducts();
   }
+
   createNewProduct(){
     const headers = new HttpHeaders({
       Authorization: `Bearer ${this.token}`,

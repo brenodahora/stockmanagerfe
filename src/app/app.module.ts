@@ -12,7 +12,6 @@ import { ProductListComponent } from './admin/product-list/product-list.componen
 import { HomePageComponent } from './public/landing/home-page/home-page.component';
 import { CreateProductComponent } from './admin/create-product/create-product.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,14 +19,17 @@ import { CreateProductComponent } from './admin/create-product/create-product.co
     NavbarComponent,
     ProductListComponent,
     HomePageComponent,
-    CreateProductComponent
+    CreateProductComponent,
+
+
   ],
   imports: [
     CommonModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

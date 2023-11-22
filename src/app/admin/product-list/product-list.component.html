@@ -1,10 +1,12 @@
 <!-- product-list.component.html -->
 <body>
+<!-- Tabela que vai buscar os produtos no banco -->
   <div class="product-container" id="telaProduto">
     <table class="table" id="tabela">
       <thead>
         <tr>
-          <th>Título</th>
+          <th>Id</th>
+          <th>Nome</th>
           <th>Produto</th>
           <th>Preço</th>
           <th></th>
@@ -13,19 +15,21 @@
       </thead>
       <tbody>
         <tr *ngFor="let product of products">
+          <td> {{ product._id }} </td>
           <td> {{ product.title }} </td>
           <td> {{ product.description }} </td>
           <td> {{ product.price}} </td>
-          <td> <a>Apagar</a> </td>
-          <td> <a>Editar</a> </td>
+          <td> <a type="submit" class="bi bi-trash-fill" id="icon" (click)="openmodalDeleteProduct()"></a> </td>
+          <td> <a type="submit" class="bi bi-pen-fill" id="icon"></a> </td>
         </tr>
       </tbody>
     </table>
   </div>
-  <button class="btn btn-success my-2 my-sm-0" type="submit" (click)="openModal()">Criar Produto</button>
+  <button class="btn btn-success my-2 my-sm-0" type="submit" (click)="openModalCreateProduct()">Criar Produto</button>
 </body>
 
-<div class="modal fade" id="modalCreateProduct" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Modal da criação de produtos -->
+<div class="modal fade" id="modalCreateProduct" tabindex="-1" aria-labelledby="modalCreateProduct" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -55,10 +59,23 @@
           <label for="bar_codes">Código de Barras</label>
           <input type="string" id="valor" [(ngModel)]="bar_codes" name="bar_codes" placeholder="Código" required>
 
-          <button id="fechar" type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="realizarRefresh()" (click)="doSomething()">Fechar</button>
+          <button id="fechar" type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="realizarRefresh()">Fechar</button>
           <button type="submit" class="btn btn-primary" (click)="realizarRefresh()">Salvar</button>
         </form>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal para deletar produtos -->
+<div class="modal fade" id="modalDeleteProduct" tabindex="-1" aria-labelledby="modalDeleteProduct" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="openmodalDeleteProduct">Deletar produto</h1>
+      </div>
+    <div class="modal-body">
+      <a>Teste</a>
     </div>
   </div>
 </div>

@@ -17,7 +17,7 @@ body {
   height: 100vh; /* Isso garante que a div permaneça no centro vertical mesmo quando a página é rolada. */
 
 }
-#tabela {
+.product-container {
   border-radius: 10px;
 }
 button{
@@ -31,4 +31,7 @@ button{
 input{
   display: flex;
   align-content: center;
+}
+#icon{
+  color: #427D9D;
 }
