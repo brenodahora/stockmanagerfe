@@ -4,7 +4,7 @@
     <table class="table" id="tabela">
       <thead>
         <tr>
-          <th>Id</th>
+          <th>Título</th>
           <th>Produto</th>
           <th>Preço</th>
           <th></th>
@@ -13,11 +13,11 @@
       </thead>
       <tbody>
         <tr *ngFor="let product of products">
-          <td>{{ product._id }}</td>
-          <td>{{ product.description }}</td>
-          <td>{{ product.price}}</td>
-          <td><a href="#">Apagar</a></td>
-          <td><a href="#">Editar</a></td>
+          <td> {{ product.title }} </td>
+          <td> {{ product.description }} </td>
+          <td> {{ product.price}} </td>
+          <td> <a>Apagar</a> </td>
+          <td> <a>Editar</a> </td>
         </tr>
       </tbody>
     </table>
@@ -25,12 +25,11 @@
   <button class="btn btn-success my-2 my-sm-0" type="submit" (click)="openModal()">Criar Produto</button>
 </body>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalCreateProduct" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Criar Produto</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h1 class="modal-title fs-5" id="modalCreateProduct">Criar Produto</h1>
       </div>
       <div class="modal-body">
         <form (ngSubmit)="createNewProduct()">
@@ -54,14 +53,11 @@
           <input type="number" id="qtd_stock" [(ngModel)]="qtd_stock" name="qtd_stock" placeholder="Quantidade" required>
 
           <label for="bar_codes">Código de Barras</label>
-          <input type="number" id="valor" [(ngModel)]="bar_codes" name="bar_codes" placeholder="Código" required>
+          <input type="string" id="valor" [(ngModel)]="bar_codes" name="bar_codes" placeholder="Código" required>
 
-          <button type="submit" class="btn btn-primary">Salvar</button>
+          <button id="fechar" type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="realizarRefresh()" (click)="doSomething()">Fechar</button>
+          <button type="submit" class="btn btn-primary" (click)="realizarRefresh()">Salvar</button>
         </form>
-      </div>
-      <div class="modal-body">
-          <button id="fechar" type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="doSomething()">Fechar</button>
-
       </div>
     </div>
   </div>

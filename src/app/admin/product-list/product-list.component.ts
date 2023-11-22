@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders  } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
 import { Product, ProductApiResponse } from '../../models/product.model';
+import { Router } from '@angular/router';
 
 declare var window:any;
 
@@ -35,14 +36,12 @@ export class ProductListComponent implements OnInit {
     page: 0
   };
 
-
-
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private router:Router) { }
 
   ngOnInit(): void {
     this.initialize();
     this.formModal = new window.bootstrap.Modal(
-      document.getElementById("exampleModal")
+      document.getElementById("modalCreateProduct")
     )
   }
 
@@ -71,8 +70,13 @@ export class ProductListComponent implements OnInit {
   }
   doSomething(){
     this.formModal.hide();
+    this.router.navigate([this.router.url]);
   }
-
+  realizarRefresh() {
+    this.router.navigate([this.router.url]);
+    this.router.navigateByUrl(this.router.url);
+    this.listAllProducts();
+  }
   createNewProduct(){
     const headers = new HttpHeaders({
       Authorization: `Bearer ${this.token}`,
@@ -89,6 +93,18 @@ export class ProductListComponent implements OnInit {
       "bar_codes": this.bar_codes
     };
 
-    this.httpClient.post(this.api + "/product", data,{ headers } ).subscribe(response => console.log(response));
+    this.httpClient.post(this.api + "/product", data, { headers })
+    .subscribe({
+      next: (response) =>{
+        console.log(response);
+        this.realizarRefresh()
+        alert("Produto cadastrado com sucesso");
+      },
+      error: (error) => {
+        alert("Erro ao cadastrar o produto consulte se os dados estão corretos");
+      }
+
+    });
+
   }
 }
