@@ -10,7 +10,6 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './admin/navbar/navbar.component';
 import { ProductListComponent } from './admin/product-list/product-list.component';
 import { HomePageComponent } from './public/landing/home-page/home-page.component';
-import { CreateProductComponent } from './admin/create-product/create-product.component';
 
 @NgModule({
   declarations: [
@@ -19,8 +18,6 @@ import { CreateProductComponent } from './admin/create-product/create-product.co
     NavbarComponent,
     ProductListComponent,
     HomePageComponent,
-    CreateProductComponent,
-
 
   ],
   imports: [

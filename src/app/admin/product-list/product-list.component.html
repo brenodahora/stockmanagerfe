@@ -19,13 +19,13 @@
           <td> {{ product.title }} </td>
           <td> {{ product.description }} </td>
           <td> {{ product.price}} </td>
-          <td> <a type="submit" class="bi bi-trash-fill" id="icon" (click)="openmodalDeleteProduct()"></a> </td>
+          <td> <a type="submit" class="bi bi-trash-fill" id="icon" (click)="openmodalDeleteProduct(product._id,product.title)"></a> </td>
           <td> <a type="submit" class="bi bi-pen-fill" id="icon"></a> </td>
         </tr>
       </tbody>
     </table>
   </div>
-  <button class="btn btn-success my-2 my-sm-0" type="submit" (click)="openModalCreateProduct()">Criar Produto</button>
+  <button class="btn btn-success my-2 my-sm-0" type="submit" id="buttonCreate" (click)="openModalCreateProduct()">Criar Produto</button>
 </body>
 
 <!-- Modal da criação de produtos -->
@@ -58,9 +58,10 @@
 
           <label for="bar_codes">Código de Barras</label>
           <input type="string" id="valor" [(ngModel)]="bar_codes" name="bar_codes" placeholder="Código" required>
-
+          <div id="buttonFormDelete">
           <button id="fechar" type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="realizarRefresh()">Fechar</button>
           <button type="submit" class="btn btn-primary" (click)="realizarRefresh()">Salvar</button>
+          </div>
         </form>
       </div>
     </div>
@@ -72,10 +73,31 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="openmodalDeleteProduct">Deletar produto</h1>
+        <h1 class="modal-title fs-5" id="openmodalDeleteProduct">Confirme se deseja deletar o seguinte produto</h1>
       </div>
     <div class="modal-body">
-      <a>Teste</a>
+        <form (ngSubmit)="deleteProduct(idSelecionado)">Analise os dados abaixo
+          <table class="table" id="tabela">
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Nome</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td> {{ idSelecionado }} </td>
+                <td> {{ titleSelecionado }} </td>
+              </tr>
+            </tbody>
+          </table>
+          <div id="buttonFormDelete">
+            <button id="fechar" type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="realizarRefresh()">Cancelar</button>
+            <button type="submit" class="btn btn-primary" (click)="realizarRefresh()">Confirmar</button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </div>
+

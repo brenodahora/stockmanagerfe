@@ -5,8 +5,8 @@ import { Product, ProductApiResponse } from '../../models/product.model';
 import { Router } from '@angular/router';
 
 declare var window:any;
-
-
+idSelecionado:String;
+titleSelelcionado:String;
 
 @Component({
   selector: 'app-product-list',
@@ -22,6 +22,9 @@ export class ProductListComponent implements OnInit {
   qtd_stock:number = 0;
   bar_codes:string = '';
 
+  idSelecionado:String = '';
+  titleSelecionado:String = '';
+
   formModalProductCreate:any;
   formModalDeleteProduct:any;
 
@@ -29,6 +32,8 @@ export class ProductListComponent implements OnInit {
   readonly token: string | null = localStorage.getItem('token');
   private api = environment.api;
   products: Product[] = [];
+
+
   productapiresponse: ProductApiResponse = {
     products: [],
     totalDocs: 0,
@@ -72,8 +77,14 @@ export class ProductListComponent implements OnInit {
   openModalCreateProduct(){
     this.formModalProductCreate.show();
   }
-  openmodalDeleteProduct(){
+
+  openmodalDeleteProduct(idEscolhido?:String, titleEscolhido?:String){
     this.formModalDeleteProduct.show();
+    if(idEscolhido != null && titleEscolhido != null){
+      this.idSelecionado = idEscolhido;
+      this.titleSelecionado = titleEscolhido;
+    }
+
   }
 
   realizarRefresh() {
@@ -108,8 +119,35 @@ export class ProductListComponent implements OnInit {
       error: (error) => {
         alert("Erro ao cadastrar o produto consulte se os dados estão corretos");
       }
-
     });
+  }
+
+  confirmacaoDeleteButton(idEscolhido?:String){
+
+  const headers = new HttpHeaders({
+    Authorization: `Bearer ${this.token}`,
+    'Content-Type': 'application/json',
+  });
+
+
+
+  this.httpClient.delete(this.api + `/product/${idEscolhido}`, { headers })
+  .subscribe({
+    next: (response) =>{
+      console.log(response);
+      this.realizarRefresh();
+      alert("Produto Apagado com Sucesso");
+    },
+    error: () => {
+      alert("Erro ao deletar consulte o console");
+    }
+  });
+  }
+
+  deleteProduct(idEscolhido?:String){
+    console.log(idEscolhido);
+    this.openmodalDeleteProduct();
+    this.confirmacaoDeleteButton(idEscolhido);
 
   }
 }

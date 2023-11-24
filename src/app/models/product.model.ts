@@ -12,6 +12,10 @@ export interface Product {
   __v?: number;
 }
 
+export interface ProductId {
+  _id?: string;
+}
+
 export interface ProductApiResponse {
   products: Product[];
   totalDocs: number;

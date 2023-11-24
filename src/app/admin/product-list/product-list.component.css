@@ -20,11 +20,6 @@ body {
 .product-container {
   border-radius: 10px;
 }
-button{
-  position: absolute;
-  right: 20px;
-  bottom: 48px;
-}
 #fechar{
   margin-right: 15%;
 }
@@ -34,4 +29,23 @@ input{
 }
 #icon{
   color: #427D9D;
+}
+
+#buttonCreate{
+  position: absolute;
+  right: 20px;
+  bottom: 48px;
+}
+
+#buttonFormDelete{
+  text-align: right;
+}
+
+#buttonFormDelete > button {
+  margin: 5px;
+  margin-top: 10px;
+}
+
+input {
+  width: 100%;
 }
