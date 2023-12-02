@@ -1,7 +1,44 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~bootstrap/dist/css/bootstrap.min.css";
+@import '~bootstrap/dist/css/bootstrap.min.css';
 @import "~bootstrap-icons/font/bootstrap-icons.css";
+
 body {
     padding: 0px;
     margin: 0px;
+}
+
+.btn-primary {
+    background-color: #427D9D !important;
+    border: #427D9D !important;
+    color: #fff;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: #35647E !important;
+}
+
+.btn-tertiary {
+    background-color: #637A80 !important;
+    border: #637A80 !important;
+    color: #fff !important;
+}
+
+.btn-tertiary:hover,
+.btn-tertiary:focus {
+    background-color: #7C98A0 !important;
+}
+
+.btn-secondary {
+    background-color: #DDF2FD !important;
+    border: #DDF2FD !important;
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus {
+    background-color: #7C98A0 !important;
+}
+
+.btn {
+    border: none !important;
 }

@@ -1,30 +1,36 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './login/login.component';
-import { AdminComponent } from './admin/admin.component';
-import { HomePageComponent } from './public/landing/home-page/home-page.component';
-
+import { LoginComponent } from './public/login/login.component';
+import { HomeComponent } from './public/home/home.component';
+import { AboutComponent } from './public/about/about.component';
+import { StockComponent } from './admin/stock/stock.component';
+import { LogoutComponent } from './admin/logout/logout.component';
 
 const routes: Routes = [
   {
-    path: '', loadChildren: () =>
-      import('./public/public.module').then((m) => m.PublicModule)
+    path: '',
+    component: HomeComponent
+  },
+  {
+    path: 'about',
+    component: AboutComponent
   },
   {
     path: 'login',
     component: LoginComponent
   },
   {
-    path: 'admin',
-    component: AdminComponent
+    path: 'stock',
+    component: StockComponent
   },
   {
-    path: 'home',
-    component: HomePageComponent
+    path: 'logout',
+    component: LogoutComponent
   }
 ];
 
 @NgModule({
+  declarations: [],
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })

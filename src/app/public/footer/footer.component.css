@@ -1,0 +1,15 @@
+#main-content-footer {
+    background-color: #427D9D;
+}
+
+#bar-bottom {
+    background-color: #9BBEC8;
+    height: 60px;
+    color: #164863;
+}
+
+@media (max-width: 600px) {
+    #bar-bottom {
+        font-size: 12px;
+    }
+}

@@ -3,7 +3,12 @@ export interface Auth {
         _id: string,
         email: string,
         senha: string,
-        __v?: number
+        name: string,
+        __v: number
     },
     token: string
+}
+
+export interface AuthValidateToken {
+    authenticate?: string
 }

@@ -1,0 +1,87 @@
+<div id="main-container" class="container-fluid">
+    <div *ngIf="emailAlreadyExists" id="alert" class="alert alert-danger alert-dismissible fade show alert-fixed"
+        role="alert">
+        {{ alertMessage }}
+    </div>
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+            <form (ngSubmit)="createNewUser()" #createUserForm="ngForm">
+                <h1>Criar conta</h1>
+
+                <input type="text" id="name" name="name" [(ngModel)]="name" placeholder="Name" required minlength="6" />
+                <div *ngIf="formCreateSubmitted && createUserForm.controls['name'].invalid">
+                    <small class="text-danger" *ngIf="createUserForm.controls['name'].errors?.['required']">Nome é
+                        obrigatório.</small>
+                    <small class="text-danger" *ngIf="createUserForm.controls['name'].errors?.['minlength']">O nome
+                        deve ter
+                        no mínimo 6 caracteres.</small>
+                </div>
+
+                <input type="email" id="newemail" name="newemail" [(ngModel)]="newemail" placeholder="Email" required
+                    email />
+                <div *ngIf="formCreateSubmitted && createUserForm.controls['newemail'].invalid">
+                    <small class="text-danger" *ngIf="createUserForm.controls['newemail'].errors?.['required']">Email é
+                        obrigatório.</small>
+                    <small class="text-danger" *ngIf="createUserForm.controls['newemail'].errors?.['email']">Email
+                        inválido.</small>
+                </div>
+
+                <input type="password" id="newsenha" name="newsenha" [(ngModel)]="newsenha" placeholder="Senha" required
+                    minlength="6" />
+                <div *ngIf="formCreateSubmitted && createUserForm.controls['newsenha'].invalid">
+                    <small class="text-danger" *ngIf="createUserForm.controls['newsenha'].errors?.['required']">Senha é
+                        obrigatória.</small>
+                    <small class="text-danger" *ngIf="createUserForm.controls['newsenha'].errors?.['minlength']">A senha
+                        deve ter no mínimo 6 caracteres.</small>
+                </div>
+
+                <button>Criar</button>
+            </form>
+        </div>
+        <div class="form-container sign-in-container">
+            <form (ngSubmit)="login()" #loginForm="ngForm">
+                <h1>Entrar na conta</h1>
+
+                <div>
+                    <input type="email" id="email" name="email" [(ngModel)]="email" placeholder="Email" required
+                        email />
+                    <div *ngIf="formLoginSubmitted && loginForm.controls['email'].invalid">
+                        <small class="text-danger" *ngIf="loginForm.controls['email'].errors?.['required']">Email é
+                            obrigatório.</small>
+                        <small class="text-danger" *ngIf="loginForm.controls['email'].errors?.['email']">Email
+                            inválido.</small>
+                    </div>
+                </div>
+
+                <div>
+                    <input type="password" id="senha" name="senha" [(ngModel)]="senha" placeholder="Senha" required
+                        minlength="6" />
+                    <div *ngIf="formLoginSubmitted && loginForm.controls['senha'].invalid">
+                        <small class="text-danger" *ngIf="loginForm.controls['senha'].errors?.['required']">Senha é
+                            obrigatória.</small>
+                        <small class="text-danger" *ngIf="loginForm.controls['senha'].errors?.['minlength']">A senha
+                            deve ter no mínimo 6 caracteres.</small>
+                    </div>
+                </div>
+
+                <a (click)="sendConfirmationCode()">Redefinir senha</a>
+                <button type="submit">Entrar</button>
+            </form>
+
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Bem-vindo(a) de volta</h1>
+                    <p>Entre em sua conta usando o email de cadastro</p>
+                    <button class="ghost" id="signIn">Entrar</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Bem-vindo(a)!</h1>
+                    <p>Crie uma conta usando seu email</p>
+                    <button class="ghost" id="signUp">Criar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
