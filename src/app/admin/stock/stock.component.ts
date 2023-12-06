@@ -14,6 +14,7 @@ declare var window: any;
 
 export class StockComponent implements OnInit {
   //Abaixo estão as variaveis que serão utilizadas globalmente neste código
+  buscarId:boolean = false;
 
   selectedFile: File | null = null;
   csvContent:string = '';
@@ -29,6 +30,7 @@ export class StockComponent implements OnInit {
   bar_codes: string = '';
 
   idSelecionado: String = '';
+  idBuscado: String = '';
   titleSelecionado: String = '';
 
   formModalProductCreate: any;
@@ -300,5 +302,38 @@ export class StockComponent implements OnInit {
   deleteProduct(idEscolhido?: String) {
     console.log(idEscolhido);
     this.confirmacaoDeleteButton(idEscolhido);
+  }
+
+  //Metodo que vai buscar o produto por ID e vai mudar a listagem para mostrar apenas ele
+  findByIdProducts(){
+
+    //Verificando se o input está vazio para retornar a listagem normal.
+    if(this.idSelecionado == ''){
+      this.buscarId = false;
+    }else{
+      this.idBuscado = this.idSelecionado;
+      //Autenticação da requisição
+      const headers = new HttpHeaders({
+        Authorization: `Bearer ${this.token}`,
+        'Content-Type': 'application/json',
+      });
+
+      // Realizando Requisição de FindById e tratando a resposta
+      this.httpClient.get<Product>(this.api + `/product/${this.idBuscado}`, { headers })
+      .subscribe({
+        next: (response) => {
+          this.title = response.title;
+          this.description = response.description;
+          this.price = response.price;
+          this.qtd_stock = response.qtd_stock;
+
+          alert("Produto encontrado com sucesso");
+          this.buscarId = true;
+        },
+        error: () => {
+          alert("Id inexistente digite novamente");
+        }
+      });
+    }
   }
 }

@@ -3,7 +3,15 @@
 <div class="bg-list">
     <!-- Tabela que vai buscar os produtos no banco -->
     <div class="product-container" id="telaProduto">
-        <div class="product-subcontainer">
+      <form >
+        <div class="input-group mb-3">
+          <input type="text" id="idSelecionado" class="form-control" [(ngModel)]="idSelecionado" name="idSelecionado" placeholder="Digite o ID" required>
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="submit"(click)="findByIdProducts()">Buscar</button>
+          </div>
+        </div>
+      </form>
+        <div class="product-subcontainer" *ngIf="buscarId==false">
             <table class="table" id="tabela">
                 <thead>
                     <tr>
@@ -28,6 +36,35 @@
                                 (click)="openmodalDeleteProduct(product._id,product.title)"></a> </td>
                         <td> <a type="submit" class="bi bi-pen-fill" id="icon"
                                 (click)="openModalUpdateProduct(product._id)"></a> </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="product-subcontainer" *ngIf="buscarId==true">
+            <table class="table" id="tabela">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nome</th>
+                        <th>Descrição</th>
+                        <th>Preço (R$)</th>
+                        <th>Qtd.</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                  <!-- Usando metodos do Angular para fazer a listagem dos produtos -->
+                    <tr>
+                        <td> {{ this.idBuscado }} </td>
+                        <td> {{ this.title }} </td>
+                        <td> {{ this.description }} </td>
+                        <td> {{ this.price | currency:'BRL':'symbol':'1.2-2' }} </td>
+                        <td> {{ this.qtd_stock}} </td>
+                        <td> <a type="submit" class="bi bi-trash-fill" id="icon"
+                                (click)="openmodalDeleteProduct(this.idSelecionado,this.title)"></a> </td>
+                        <td> <a type="submit" class="bi bi-pen-fill" id="icon"
+                                (click)="openModalUpdateProduct(this.idSelecionado)"></a> </td>
                     </tr>
                 </tbody>
             </table>
