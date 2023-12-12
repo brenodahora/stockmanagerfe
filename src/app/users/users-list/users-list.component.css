@@ -1,0 +1,38 @@
+#telaProduto{
+    width: 80%; /* Ou a largura desejada para a sua div */
+    height: 80%;
+    text-align: center; /* Para centralizar o conteúdo dentro da div */
+    border: 1px solid #ccc; /* Apenas para visualização, pode ser removido */
+    border-radius: 10px;
+    padding: 20px; /* Ajuste conforme necessário */
+    background-color: #9BBEC8;
+    margin-top: 2%;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+  
+    justify-content: center;
+    height: 100vh; /* Isso garante que a div permaneça no centro vertical mesmo quando a página é rolada. */
+  
+  }
+  .product-container {
+    border-radius: 10px;
+  }
+  button{
+    position: absolute;
+    right: 20px;
+    bottom: 48px;
+  }
+  #fechar{
+    margin-right: 15%;
+  }
+  input{
+    display: flex;
+    align-content: center;
+  }
+  #icon{
+    color: #427D9D;
+  }
+  

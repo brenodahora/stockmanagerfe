@@ -1,0 +1,57 @@
+<body>
+      <div class="product-container" id="telaProduto">
+        <table class="table" id="tabela">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Nome</th>
+              <th>E-mail</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let i of users">
+              <td> {{ i._id }} </td>
+              <td> {{ i.name }}</td>
+              <td> {{ i.email }} </td>
+              <td> <a type="submit" class="bi bi-trash-fill" id="icon" (click)="openModalUserDelete(i._id, i.name)"></a> </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="modal fade" id="modalUserDelete" tabindex="-1" aria-labelledby="modalUserDelete" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="openModalUserDelete">Confirme se deseja deletar o seguinte produto
+                    </h1>
+                </div>
+                <div class="modal-body">
+                    <form (ngSubmit)="deleteUser(selectId)">Analise os dados abaixo
+                        <table class="table" id="tabela">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Nome</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td> {{ selectId }} </td>
+                                    <td> {{ selectName }} </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div id="buttonFormDelete">
+                            <button id="fechar" type="button" class="btn btn-tertiary" data-bs-dismiss="modal"
+                                (click)="realizarRefresh()">Cancelar</button>
+                            <button type="submit" class="btn btn-primary" (click)="realizarRefresh()">Confirmar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+      </div>
+  </body>

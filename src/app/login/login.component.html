@@ -1,0 +1,20 @@
+<div class="bg-light">
+    <div class="container text-center py-5">
+        <div class="container rounded border p-5 bg-white shadow text-center text-muted col-lg-5">
+            <h4 class="mb-0">Gerenciamento de Estoque</h4>
+            
+            <img src="../../assets/logo.png" >
+            <form (ngSubmit)="login()">
+                <label for="email">email</label>
+                <input type="text" id="email" [(ngModel)]="email" name="email" placeholder="email" required>
+        
+                <label for="senha">Senha</label>
+                <input type="password" id="senha" [(ngModel)]="senha" name="senha" placeholder="senha" required>
+
+                <a class="redefine-password">Redefinir senha</a>
+                
+                <button type="submit">Entrar</button>
+            </form>
+          </div>
+    </div>
+</div>
