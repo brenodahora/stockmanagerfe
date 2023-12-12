@@ -29,19 +29,32 @@ export class StockComponent implements OnInit {
   qtd_stock: number = 0;
   bar_codes: string = '';
 
+  //Variaveis que serão usadas no metodo de Update
+  titleUp: string = '';
+  descriptionUp: string = '';
+  departmentUp: string = '';
+  brandUp: string = '';
+  priceUp: number = 0;
+  qtd_stockUp: number = 0;
+  bar_codesUp: string = '';
+
+  // Variaveis que serão usadas em todos os metodos que envolvem Id
   idSelecionado: String = '';
   idBuscado: String = '';
   titleSelecionado: String = '';
 
+  // Variaveis que serão usadas para mostrar o modal
   formModalProductCreate: any;
   formModalDeleteProduct: any;
   formModalCreateProductByCSV: any;
   formModalUpdateProduct: any;
 
-
+  // Salvando Id e Token para autenticação
   readonly _id: string | null = localStorage.getItem('_id');
   readonly token: string | null = localStorage.getItem('token');
   private api = environment.api;
+
+  // Variavel para mostrar mais de um produto
   products: Product[] = [];
 
   // Modelando Resposta de varios documentos vindo do mongoDB
@@ -76,6 +89,7 @@ export class StockComponent implements OnInit {
     this.listAllProducts();
   }
 
+  // Metodo onde vai mostrar todos os produtos na Listagem na Div
   private listAllProducts(): void {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${this.token}`,
@@ -93,35 +107,35 @@ export class StockComponent implements OnInit {
       }
     });
   }
-  //Usado para abrir o Modal de Criação de produto
+  // Usado para abrir o Modal de Criação de produto
   openModalCreateProduct() {
     this.formModalProductCreate.show();
   }
-  //Usado para abrir o Modal de Criação de produto por CSV
+  // Usado para abrir o Modal de Criação de produto por CSV
   openModalCreateProductByCSV() {
     this.formModalCreateProductByCSV.show();
   }
-  //Usado para abrir o Modal de Atualização de produto e pré-preencher os campos
+  // Usado para abrir o Modal de Atualização de produto e pré-preencher os campos
   openModalUpdateProduct(idEscolhido: String) {
     if (idEscolhido != null) {
       this.idSelecionado = idEscolhido;
     }
-    //Autorizando Requisição
+    // Autorizando Requisição
     const headers = new HttpHeaders({
       Authorization: `Bearer ${this.token}`,
       'Content-Type': 'application/json',
     });
-    //Buscando produto por ID
+    // Buscando produto por ID
     this.httpClient.get<Product>(this.api + `/product/${this.idSelecionado}`, { headers }).subscribe({
       next: (response) => {
         const data = response;
-        this.title = data.title;
-        this.description = data.description;
-        this.department = data.department;
-        this.brand = data.brand;
-        this.price = data.price;
-        this.qtd_stock = data.qtd_stock;
-        this.bar_codes = data.bar_codes;
+        this.titleUp = data.title;
+        this.descriptionUp = data.description;
+        this.departmentUp = data.department;
+        this.brandUp = data.brand;
+        this.priceUp = data.price;
+        this.qtd_stockUp = data.qtd_stock;
+        this.bar_codesUp = data.bar_codes;
       },
       error: (error) => {
         alert(error.error);
@@ -130,7 +144,7 @@ export class StockComponent implements OnInit {
 
     this.formModalUpdateProduct.show();
   }
-  //Usado para abrir o modal para deletar produto, já capturando o Id e titulo.
+  // Usado para abrir o modal para deletar produto, já capturando o Id e titulo.
   openmodalDeleteProduct(idEscolhido?: String, titleEscolhido?: String) {
     this.formModalDeleteProduct.show();
     if (idEscolhido != null && titleEscolhido != null) {
@@ -140,14 +154,13 @@ export class StockComponent implements OnInit {
 
   }
 
-  //Atualizar página e listagem de produtos
+  // Atualizar página e listagem de produtos
   realizarRefresh() {
-    this.router.navigate([this.router.url]);
     this.router.navigateByUrl(this.router.url);
     this.listAllProducts();
   }
 
-  //Metodo para criar novo produto consumindo a API
+  // Metodo para criar novo produto consumindo a API
   createNewProduct() {
     //Autorizando Requisição
     const headers = new HttpHeaders({
@@ -178,15 +191,16 @@ export class StockComponent implements OnInit {
         }
       });
   }
-  //Metodo para atualizar produto
+
+  // Metodo para atualizar produto
   updateProduct() {
-    //Autorizando Requisição
+    // Autorizando Requisição
     const headers = new HttpHeaders({
       Authorization: `Bearer ${this.token}`,
       'Content-Type': 'application/json',
     });
 
-    //Objeto que vai moldar os dados para envio
+    // Objeto que vai moldar os dados para envio
     const data = {
       "title": this.title,
       "description": this.description,
@@ -196,14 +210,14 @@ export class StockComponent implements OnInit {
       "qtd_stock": this.qtd_stock,
       "bar_codes": this.bar_codes
     };
-    //Variavel para verificar se os campos estão vazios
+    // Variavel para verificar se os campos estão vazios
     const allFieldsEmpty = Object.values(data).every(value => value === '' || value === null || value === undefined);
 
-    //Realizando laço condicional para só realizar a requisição se todos os campos estiverem preenchidos
+    // Realizando laço condicional para só realizar a requisição se todos os campos estiverem preenchidos
     if (allFieldsEmpty) {
       alert('Erro: Todos os campos estão vazios.');
     } else {
-       //Usando a rota da API para realizar o update no banco de dados
+       // Usando a rota da API para realizar o update no banco de dados
       this.httpClient.patch(this.api + `/product/${this.idSelecionado}`, data,{ headers })
       .subscribe({
         next: (response) => {
@@ -262,7 +276,7 @@ export class StockComponent implements OnInit {
 
   }
 
-  //Metodo onde o Front-end vai enviar o arquivo
+  // Metodo onde o Front-end vai enviar o arquivo
   onFileSelected(event: any) {
     //Capturando o arquivo enviado pelo usuario
     const file: File = event.target.files[0];
@@ -276,7 +290,7 @@ export class StockComponent implements OnInit {
     reader.readAsText(file);
   }
 
-  //Apos o usuario apertar no botão de confirmação vai enviar a deleção para a API
+  // Apos o usuario apertar no botão de confirmação vai enviar a deleção para a API
   confirmacaoDeleteButton(idEscolhido?: String) {
     //Autenticação da requisição
     const headers = new HttpHeaders({
@@ -298,13 +312,13 @@ export class StockComponent implements OnInit {
       });
   }
 
-  //Metodo que vai abrir o modal e realizará a deleção apenas quando o usuario clicar no botão
+  // Metodo que vai abrir o modal e realizará a deleção apenas quando o usuario clicar no botão
   deleteProduct(idEscolhido?: String) {
     console.log(idEscolhido);
     this.confirmacaoDeleteButton(idEscolhido);
   }
 
-  //Metodo que vai buscar o produto por ID e vai mudar a listagem para mostrar apenas ele
+  // Metodo que vai buscar o produto por ID e vai mudar a listagem para mostrar apenas ele
   findByIdProducts(){
 
     //Verificando se o input está vazio para retornar a listagem normal.

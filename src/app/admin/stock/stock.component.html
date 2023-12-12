@@ -86,28 +86,28 @@
                 <form (ngSubmit)="createNewProduct()">
 
                     <label for="title">Nome</label>
-                    <input type="text" id="title" [(ngModel)]="title" name="title" placeholder="nome" required>
+                    <input type="text" id="title" [(ngModel)]="this.title" name="title" placeholder="nome" required>
 
                     <label for="descricao">Descrição</label>
-                    <input type="text" id="descricao" [(ngModel)]="description" name="descricao" placeholder="descricao"
+                    <input type="text" id="descricao" [(ngModel)]="this.description" name="descricao" placeholder="descricao"
                         required>
 
                     <label for="department">Departamento</label>
-                    <input type="text" id="department" [(ngModel)]="department" name="department"
+                    <input type="text" id="department" [(ngModel)]="this.department" name="department"
                         placeholder="Departamento" required>
 
                     <label for="brand">Marca</label>
-                    <input type="text" id="brand" [(ngModel)]="brand" name="brand" placeholder="Marca" required>
+                    <input type="text" id="brand" [(ngModel)]="this.brand" name="brand" placeholder="Marca" required>
 
                     <label for="valor">Valor</label>
-                    <input type="number" id="valor" [(ngModel)]="price" name="price" placeholder="valor" required>
+                    <input type="number" id="valor" [(ngModel)]="this.price" name="price" placeholder="valor" required>
 
                     <label for="qtd_stock">Quantidade em estoque</label>
-                    <input type="number" id="qtd_stock" [(ngModel)]="qtd_stock" name="qtd_stock"
+                    <input type="number" id="qtd_stock" [(ngModel)]="this.qtd_stock" name="qtd_stock"
                         placeholder="Quantidade" required>
 
                     <label for="bar_codes">Código de Barras</label>
-                    <input type="string" id="valor" [(ngModel)]="bar_codes" name="bar_codes" placeholder="Código"
+                    <input type="string" id="valor" [(ngModel)]="this.bar_codes" name="bar_codes" placeholder="Código"
                         required>
                     <div id="buttonFormDelete">
                         <button id="fechar" type="button" class="btn btn-tertiary" data-bs-dismiss="modal"
@@ -189,28 +189,28 @@
             <form (ngSubmit)="updateProduct()">
 
               <label for="title">Nome</label>
-              <input type="text" id="title" [(ngModel)]="title" name="title" placeholder="nome" required>
+              <input type="text" id="title" [(ngModel)]="titleUp" name="title" placeholder="nome" required>
 
               <label for="descricao">Descrição</label>
-              <input type="text" id="descricao" [(ngModel)]="description" name="descricao" placeholder="descricao"
+              <input type="text" id="descricao" [(ngModel)]="descriptionUp" name="descricao" placeholder="descricao"
                   required>
 
               <label for="department">Departamento</label>
-              <input type="text" id="department" [(ngModel)]="department" name="department"
+              <input type="text" id="department" [(ngModel)]="departmentUp" name="department"
                   placeholder="Departamento" required>
 
               <label for="brand">Marca</label>
-              <input type="text" id="brand" [(ngModel)]="brand" name="brand" placeholder="Marca" required>
+              <input type="text" id="brand" [(ngModel)]="brandUp" name="brand" placeholder="Marca" required>
 
               <label for="valor">Valor</label>
-              <input type="number" id="valor" [(ngModel)]="price" name="price" placeholder="valor" required>
+              <input type="number" id="valor" [(ngModel)]="priceUp" name="price" placeholder="valor" required>
 
               <label for="qtd_stock">Quantidade em estoque</label>
-              <input type="number" id="qtd_stock" [(ngModel)]="qtd_stock" name="qtd_stock"
+              <input type="number" id="qtd_stock" [(ngModel)]="qtd_stockUp" name="qtd_stock"
                   placeholder="Quantidade" required>
 
               <label for="bar_codes">Código de Barras</label>
-              <input type="string" id="valor" [(ngModel)]="bar_codes" name="bar_codes" placeholder="Código"
+              <input type="string" id="valor" [(ngModel)]="bar_codesUp" name="bar_codes" placeholder="Código"
                   required>
               <div id="buttonFormDelete">
                   <button id="fechar" type="button" class="btn btn-tertiary" data-bs-dismiss="modal"
