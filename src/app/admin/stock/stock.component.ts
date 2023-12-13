@@ -202,13 +202,13 @@ export class StockComponent implements OnInit {
 
     // Objeto que vai moldar os dados para envio
     const data = {
-      "title": this.title,
-      "description": this.description,
-      "department": this.department,
-      "brand": this.brand,
-      "price": this.price,
-      "qtd_stock": this.qtd_stock,
-      "bar_codes": this.bar_codes
+      "title": this.titleUp,
+      "description": this.descriptionUp,
+      "department": this.departmentUp,
+      "brand": this.brandUp,
+      "price": this.priceUp,
+      "qtd_stock": this.qtd_stockUp,
+      "bar_codes": this.bar_codesUp
     };
     // Variavel para verificar se os campos estão vazios
     const allFieldsEmpty = Object.values(data).every(value => value === '' || value === null || value === undefined);
